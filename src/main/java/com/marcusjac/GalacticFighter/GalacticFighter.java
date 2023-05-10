@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -86,7 +87,13 @@ public class GalacticFighter {
         //mouse control (move and click)
         canvas.setOnMouseMoved(e-> playerOneXPos = e.getX()-PLAYER_WIDTH/2);
 
+
         Scene scene = new Scene(new StackPane(canvas));
+        scene.setOnKeyPressed(e-> {
+            System.out.println(e.getCode());
+            if(phase==Phase.GAME)
+                shoot();
+        });
 
         stage.setScene(scene);
         stage.show();
